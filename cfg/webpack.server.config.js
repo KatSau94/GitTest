@@ -1,6 +1,8 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const NODE_ENV = process.env.NODE_ENV;
+const IS_DEV = NODE_ENV === 'development';
+const IS_PROD = NODE_ENV === 'production';
 
 module.exports = {
 
@@ -21,7 +23,7 @@ module.exports = {
             { test: /\.tsx?$/, loader: "ts-loader" }
         ]
     },
-    mode: 'development',
+    mode: NODE_ENV ? NODE_ENV : 'development',
     externals: [nodeExternals()],
     optimization: {
         minimize: false
